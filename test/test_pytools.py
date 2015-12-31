@@ -22,5 +22,20 @@ class TestTemplates(unittest.TestCase):
         self.assertTrue(filecmp.cmp("utf8_test.template", "junk", shallow=False))  # NOQA
         os.remove("junk")
 
+
+class TestRoundTrip(unittest.TestCase):
+
+    def setUp(self):
+        pass
+
+    def test_round_trip(self):
+        pytools.create("utf8_test.py", "junk.template")
+        pytools.py2json("utf8_test.py", "junk.json")
+        pytools.json2py("junk.json", "junk.template", "junk.py")
+        self.assertTrue(filecmp.cmp("utf8_test.py", "junk.py", shallow=False))
+        for f in ["junk.template", "junk.json", "junk.py"]:
+            os.remove(f)
+
+
 if __name__ == '__main__':
     unittest.main()

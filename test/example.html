@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Free Interactive Programming Tutorials">
+<meta name="keywords" content="JavaScript,Python,Programming">
+<meta name="author" content="André Roberge">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="../src/plurilingue.js"></script>
+
+
+<title>Translator tool</title>
+</head>
+<body>
+    <h1>Example specifically designed for Reeborg's World</h1>
+
+    <button>Add row</button>
+    <table>
+        <tbody>
+            <tr>
+                <td>key</td>
+                <td>old</td>
+                <td>new</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <script>
+    var tbody = $('tbody');
+    var row = '<tr>'+
+    '<td>{id}</td>'+
+    '<td>{old}</td>'+
+    '<td>{new}</td>'+
+    '</tr>';
+
+
+    $('button').click(function(){
+        console.log("click");
+        //Add row
+        tbody.append(row.supplant({
+            'id': 3,
+            'old': 'Lee blah blah blah blah ',
+            'new': '123 456 789'
+        }));
+    })
+    </script>
+
+</body>
+</html>
