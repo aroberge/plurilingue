@@ -14,7 +14,7 @@ function update_reference(data){
     var row = '<tr id={idx}>' +
       '<td>{idx}</td>' +
       '<td><textarea rows="{rows}" cols="80" readonly>{elem}</textarea></td>' +
-      '<td><textarea rows="{rows}" cols="80">{elem}</textarea></td>' +
+      '<td><textarea id="textarea-{idx}" rows="{rows}" cols="80"> </textarea></td>' +
       '</tr>';
     tbody.html('');
     $.each(data, function(idx, elem){
@@ -27,6 +27,16 @@ function update_reference(data){
         }));
     });
 }
+
+function update_new(data){
+    $.each(data, function(idx, elem){
+        elem = elem.replace(/\\n/g, "\n");
+        var area = document.getElementById("textarea-" + idx);
+        area.value = elem;
+        // $("#textarea-" + idx).val(elem);
+    });
+}
+
 
 
 $(document).ready(function() {
@@ -41,6 +51,21 @@ $(document).ready(function() {
             },
             success: function(data){
                 update_reference(data);
+            }
+        });
+    });
+
+    $("#select-new").change(function() {
+        if (!$(this).val()){
+            return;
+        }
+        $.ajax({url: $(this).val(),
+            dataType: 'json',
+            error: function(e){
+                alert("error");
+            },
+            success: function(data){
+                update_new(data);
             }
         });
     });

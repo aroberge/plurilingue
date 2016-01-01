@@ -53,6 +53,7 @@ tbody tr:nth-child(even) {
           <select id="select-new" name="new">
               <option value="">New</option>
               <option value="utf8_test.json">utf8_test.json</option>
+              <option value="utf8_mod_test.json">utf8_mod_test.json</option>
           </select>
         </th>
       </tr>
@@ -60,28 +61,6 @@ tbody tr:nth-child(even) {
     <tbody></tbody>
   </table>
 
-  <button>Add row</button>
-  <script>
-    var tbody = $('tbody');
-    var row = '<tr id={id}>' +
-      '<td>{id}</td>' +
-      '<td>{reference}</td>' +
-      '<td>{new}</td>' +
-      '</tr>';
-
-
-    $('button').click(function() {
-      console.log("click");
-      //Add row
-      tbody.append(row.supplant({
-        'id': 3,
-        'reference': 'Lee blah blah blah blah ',
-        'new': '123 456 789'
-      }));
-    })
-
-    $('#select-reference').on('change')
-  </script>
 
 </body>
 
