@@ -13,25 +13,32 @@ function update_reference(data){
     var tbody = $('tbody');
     var row = '<tr id={idx}>' +
       '<td>{idx}</td>' +
-      '<td><textarea rows="{rows}" cols="80" readonly>{elem}</textarea></td>' +
-      '<td><textarea id="textarea-{idx}" rows="{rows}" cols="80"> </textarea></td>' +
+      '<td><textarea id="old-{idx}" rows="{rows}" cols="80" readonly>{elem}</textarea></td>' +
+      '<td><textarea id="new-{idx}" rows="{rows}" cols="80" wrap="hard"> </textarea></td>' +
       '</tr>';
-    tbody.html('');
-    $.each(data, function(idx, elem){
-        var rows = (elem.match(/\\n/g) || []).length + 1;
-        elem = elem.replace(/\\n/g, "\n");
-        tbody.append(row.supplant({
-            'idx':idx,
-            'elem': elem,
-            'rows': rows
-        }));
-    });
+    if (tbody.html()) {  // replace
+        $.each(data, function(idx, elem){
+            elem = elem.replace(/\\n/g, "\n");
+            var area = document.getElementById("old-" + idx);
+            area.value = elem;
+        });
+    } else {  // create
+        $.each(data, function(idx, elem){
+            var rows = (elem.match(/\\n/g) || []).length + 2;
+            elem = elem.replace(/\\n/g, "\n");
+            tbody.append(row.supplant({
+                'idx':idx,
+                'elem': elem,
+                'rows': rows
+            }));
+        });
+    }
 }
 
 function update_new(data){
     $.each(data, function(idx, elem){
         elem = elem.replace(/\\n/g, "\n");
-        var area = document.getElementById("textarea-" + idx);
+        var area = document.getElementById("new-" + idx);
         area.value = elem;
     });
 }
@@ -41,7 +48,7 @@ function save_json() {
     var area, blob, content, cells, json_obj = {};
     $("tbody tr").each(function(index){
         idx = $(this).attr("id");
-        var area = document.getElementById("textarea-" + idx);
+        var area = document.getElementById("new-" + idx);
         content = area.value;
         json_obj[idx] = content.replace(/\n/g, "\\n");
     });
