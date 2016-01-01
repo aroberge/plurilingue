@@ -1,5 +1,5 @@
 {
-  "py:__head": "'''Some docstring by Andr\u00e9'''\\n",
-  "#py:korean": "def \uc548\ub155\ud558\uc138\uc694():\\n    print(\"hello\")",
-  "#py:hello": "def hello():\\n    print(\"hello\")\\n"
+  "#py:hello": "def hello():\\n    print(\"hello\")\\n",
+  "#py:korean": "def 안녕하세요():\\n    print(\"hello\")",
+  "py:__head": "'''Some docstring by André'''\\n"
 }

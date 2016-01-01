@@ -54,13 +54,13 @@ def py2json(infile, outfile=None):
     elif outfile == "print":
         print(repr(content).encode("utf-8"))
     else:
-        with open(outfile, 'w') as json_file:
-            json.dump(content, json_file, indent=2)
+        with open(outfile, 'w', encoding="utf-8") as json_file:
+            json.dump(content, json_file, ensure_ascii=False, indent=2)
 
 
 def json2py(infile, template, outfile=None):
     '''Given a json file and a template, reconstructs a Python file.'''
-    with open(infile) as json_file:
+    with open(infile, encoding="utf-8") as json_file:
         content = json.load(json_file)
 
     with open(template) as tmpl, open(outfile, 'w', encoding="utf-8") as out:

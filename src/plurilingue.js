@@ -33,8 +33,20 @@ function update_new(data){
         elem = elem.replace(/\\n/g, "\n");
         var area = document.getElementById("textarea-" + idx);
         area.value = elem;
-        // $("#textarea-" + idx).val(elem);
     });
+}
+
+function save_json() {
+    // Loop through grabbing everything
+    var area, blob, content, cells, json_obj = {};
+    $("tbody tr").each(function(index){
+        idx = $(this).attr("id");
+        var area = document.getElementById("textarea-" + idx);
+        content = area.value;
+        json_obj[idx] = content.replace(/\n/g, "\\n");
+    });
+    blob = new Blob([JSON.stringify(json_obj, null, '  ')], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "filename.json", true);
 }
 
 

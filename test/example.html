@@ -9,6 +9,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="../src/filesaver.js"></script>
   <script src="../src/plurilingue.js"></script>
   <title>Translator tool</title>
 
@@ -55,6 +56,7 @@ tbody tr:nth-child(even) {
               <option value="utf8_test.json">utf8_test.json</option>
               <option value="utf8_mod_test.json">utf8_mod_test.json</option>
           </select>
+          <button onclick="javascript:save_json();">Save</button>
         </th>
       </tr>
     </thead>
