@@ -1,52 +1,88 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="description" content="Free Interactive Programming Tutorials">
-<meta name="keywords" content="JavaScript,Python,Programming">
-<meta name="author" content="André Roberge">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="../src/plurilingue.js"></script>
+  <meta charset="utf-8">
+  <meta name="description" content="Free Interactive Programming Tutorials">
+  <meta name="keywords" content="JavaScript,Python,Programming">
+  <meta name="author" content="André Roberge">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script src="../src/plurilingue.js"></script>
+  <title>Translator tool</title>
 
+<style>
+body {
+  font: normal medium/1.4 sans-serif;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+thead tr {
+    font-weight:bold;
+    background: #eef
+}
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+tbody tr:nth-child(even) {
+  background: #eee;
+}
+</style>
 
-<title>Translator tool</title>
 </head>
+
 <body>
-    <h1>Example specifically designed for Reeborg's World</h1>
+  <h1>Example specifically designed for Reeborg's World</h1>
 
-    <button>Add row</button>
-    <table>
-        <tbody>
-            <tr>
-                <td>key</td>
-                <td>old</td>
-                <td>new</td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>
+          <select id="select-reference" name="reference">
+            <option value="">Reference</option>
+            <option value="utf8_test.json">utf8_test.json</option>
+          </select>
+        </th>
+        <th>
+          <select id="select-new" name="new">
+              <option value="">New</option>
+              <option value="utf8_test.json">utf8_test.json</option>
+          </select>
+        </th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-
-    <script>
+  <button>Add row</button>
+  <script>
     var tbody = $('tbody');
-    var row = '<tr>'+
-    '<td>{id}</td>'+
-    '<td>{old}</td>'+
-    '<td>{new}</td>'+
-    '</tr>';
+    var row = '<tr id={id}>' +
+      '<td>{id}</td>' +
+      '<td>{reference}</td>' +
+      '<td>{new}</td>' +
+      '</tr>';
 
 
-    $('button').click(function(){
-        console.log("click");
-        //Add row
-        tbody.append(row.supplant({
-            'id': 3,
-            'old': 'Lee blah blah blah blah ',
-            'new': '123 456 789'
-        }));
+    $('button').click(function() {
+      console.log("click");
+      //Add row
+      tbody.append(row.supplant({
+        'id': 3,
+        'reference': 'Lee blah blah blah blah ',
+        'new': '123 456 789'
+      }));
     })
-    </script>
+
+    $('#select-reference').on('change')
+  </script>
 
 </body>
+
 </html>

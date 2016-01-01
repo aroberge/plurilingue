@@ -2,7 +2,7 @@ import json
 
 py_head = "py:__head"
 
-def create(infile, outfile=None):
+def create_template(infile, outfile=None):
     '''Creates a template file containing all the keys extracted
        from a python file.
 
@@ -77,7 +77,7 @@ def json2py(infile, template, outfile=None):
 
 if __name__ == '__main__':
     import sys
-    METHODS = {"create": create,
+    METHODS = {"create_template": create_template,
                "compare": compare,
                "py2json": py2json,
                "json2py": json2py

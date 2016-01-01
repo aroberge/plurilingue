@@ -9,14 +9,39 @@ String.prototype.supplant = function (o) {
     );
 };
 
+function update_reference(data){
+    var tbody = $('tbody');
+    var row = '<tr id={idx}>' +
+      '<td>{idx}</td>' +
+      '<td><textarea rows="{rows}" cols="80" readonly>{elem}</textarea></td>' +
+      '<td><textarea rows="{rows}" cols="80">{elem}</textarea></td>' +
+      '</tr>';
+    tbody.html('');
+    $.each(data, function(idx, elem){
+        var rows = (elem.match(/\\n/g) || []).length + 1;
+        elem = elem.replace(/\\n/g, "\n");
+        tbody.append(row.supplant({
+            'idx':idx,
+            'elem': elem,
+            'rows': rows
+        }));
+    });
+}
 
-var jqxhr = $.ajax( "example.php" )
-  .done(function() {
-    alert( "success" );
-  })
-  .fail(function() {
-    alert( "error" );
-  })
-  .always(function() {
-    alert( "complete" );
-  });
+
+$(document).ready(function() {
+    $("#select-reference").change(function() {
+        if (!$(this).val()){
+            return;
+        }
+        $.ajax({url: $(this).val(),
+            dataType: 'json',
+            error: function(e){
+                alert("error");
+            },
+            success: function(data){
+                update_reference(data);
+            }
+        });
+    });
+});
