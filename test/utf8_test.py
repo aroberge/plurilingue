@@ -1,9 +1,8 @@
 '''Some docstring by André'''
 
-#py:hello
-def hello():
+def hello():  #py:hello
     print("hello")
 
-#py:korean
-def 안녕하세요():
+
+def 안녕하세요():  #py:korean
     print("hello")

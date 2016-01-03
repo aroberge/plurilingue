@@ -14,3 +14,5 @@ Rough list of things to do
 - [ ] interactive html to create/modify json
 - [ ] experiment with adding a language switcher to the translator itself,
       loading (and executing) js via $ajax
+
+  [ ] Note problem about linter flake8 E262
